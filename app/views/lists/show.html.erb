@@ -1,0 +1,18 @@
+<%= render @list %>
+
+<h2>Movies 🎞️</h2>
+<ul class="list-group">
+  <% @list.bookmarks.each do |bookmark| %>
+    <li class="list-group-item"><%= bookmark.comment %></li>
+    <li> <%= bookmark.movie.name %></li>
+      <%= link_to "Delete",
+        movie_path(movie),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    </li>
+  <% end %>
+  <%= link_to "Add movie bookmark to list", new_list_bookmark_path(@list.id) %>
+</ul>
+
+<div>
+  <%= link_to "Back to lists", lists_path %>
+</div>
